@@ -17,7 +17,7 @@
   border-radius: 50%;
 }
 
-.obstacle {
+#obstacle {
   position: absolute;
   top: 0;
   left: 400px;
@@ -26,7 +26,7 @@
   background-color: #000;
 }
 
-.game-over {
+#game-over {
   position: absolute;
   top: 50%;
   left: 50%;
