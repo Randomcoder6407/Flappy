@@ -16,3 +16,21 @@
   background-color: #f00;
   border-radius: 50%;
 }
+
+.obstacle {
+  position: absolute;
+  top: 0;
+  left: 400px;
+  width: 60px;
+  height: 200px;
+  background-color: #000;
+}
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: #f00;
+}
