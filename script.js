@@ -1,14 +1,13 @@
 const bird = document.getElementById("bird");
 const gameContainer = document.getElementById("game-container");
 let isGameOver = false;
+let birdPosition = 200;
+let birdGravity = 2;
 
 function jump() {
   if (isGameOver) return;
 
-  bird.style.animation = "jump 0.5s";
-  setTimeout(() => {
-    bird.style.animation = "";
-  }, 500);
+  birdGravity = -10;
 }
 
 function createObstacle() {
@@ -37,7 +36,8 @@ function createObstacle() {
     if (
       obstaclePosition > 0 &&
       obstaclePosition < 100 &&
-      bird.style.top < `${randomHeight}px`
+      birdPosition < randomHeight + 200 &&
+      birdPosition + 40 > randomHeight
     ) {
       gameOver();
     }
@@ -45,6 +45,20 @@ function createObstacle() {
 
   let obstacleTimer = setInterval(moveObstacle, 20);
   setTimeout(createObstacle, 3000);
+}
+
+function updateBird() {
+  if (isGameOver) return;
+
+  birdPosition += birdGravity;
+  bird.style.top = `${birdPosition}px`;
+  birdGravity += 0.5;
+
+  if (birdPosition > gameContainer.clientHeight - 40) {
+    gameOver();
+  }
+
+  requestAnimationFrame(updateBird);
 }
 
 function gameOver() {
@@ -61,3 +75,4 @@ function gameOver() {
 
 document.addEventListener("keydown", jump);
 createObstacle();
+updateBird();
